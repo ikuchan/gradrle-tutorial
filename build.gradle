@@ -1,36 +1,7 @@
 task upper {
   doLast {
-    String someString = 'mY_nAmE'
-    println "Original: " + someString 
-    println "Upper case: " + someString.toUpperCase()
-    4.times { print "$it "}
+	String someString = 'mY_nAme'
+	println "Original: "+someString
+	println "Upper case: " + someString.toUpperCase()
   }
 }
-
-task intro(dependsOn: upper){
-  doLast {
-    println "I'm Gradle"
-  }
-}
-
-
-task taskX(dependsOn: 'taskY'){
-  doLast {
-    println 'taskX'
-  }
-}
-
-task taskY {
-  doLast {
-    println 'taskY'
-  }
-}
-
-4.times {
-  counter ->
-    task "task$counter" doLast {
-      println "I'm task number $counter"
-    }
-  }
-
-task0.dependsOn task2, task3
