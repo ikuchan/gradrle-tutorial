@@ -5,3 +5,67 @@ task upper {
 	println "Upper case: " + someString.toUpperCase()
   }
 }
+
+task count {
+  doLast {
+	4.times {print "$it "}
+  }
+}
+
+task hello {
+  doLast{
+	println 'Hello world!'
+	}
+}
+
+hello.doFirst {
+	println 'Hello doFirst'
+}
+
+hello.doLast {
+	println 'Hello doLast'
+}
+
+hello.doLast {
+	println "Greetings from the $hello.name task."
+}
+
+
+task intro (dependsOn: hello){
+  doLast{
+	println "I'm Gradle"
+	}
+}
+
+task taskX(dependsOn: 'taskY'){
+  doLast{
+	println 'taskX'
+  }
+}
+
+task taskY(){
+  doLast{
+	println 'taskY'
+  }
+}
+
+4.times { counter ->
+  task "task$counter" {
+    doLast{
+	println "I'm task number $counter"
+ 	}
+  }
+}
+
+task0.dependsOn task3,task1
+
+
+task myTask {
+	ext.myProperty = "myValue"
+}
+
+task printTaskProperties{
+	doLast{
+		println myTask.myProperty
+	}
+}
